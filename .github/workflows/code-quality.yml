@@ -1,0 +1,88 @@
+name: Code Quality
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  format-check:
+    name: Check Code Formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Check TypeScript formatting
+        run: |
+          echo "🎨 Checking TypeScript code formatting..."
+
+          # Check if there are any .ts files in src/ (production code)
+          if [ -d "src" ] && find src -name "*.ts" 2>/dev/null | grep -q .; then
+            echo "Checking production code formatting..."
+            deno fmt --check src/
+            echo "✅ Production code is properly formatted"
+          else
+            echo "ℹ️  No production code (src/) yet"
+            echo "   Prototype code (prototypes/) exempt from strict formatting during development"
+          fi
+
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Lint TypeScript
+        run: |
+          echo "🔍 Linting TypeScript code..."
+
+          # Lint production code only (src/)
+          if [ -d "src" ] && find src -name "*.ts" 2>/dev/null | grep -q .; then
+            echo "Linting production code..."
+            deno lint src/
+            echo "✅ Production code passes linting"
+          else
+            echo "ℹ️  No production code (src/) yet"
+            echo "   Prototype code (prototypes/) exempt from strict linting during development"
+          fi
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Run tests
+        run: |
+          echo "🧪 Running tests..."
+
+          # Run tests if test directory exists
+          if [ -d "tests" ] || [ -d "test" ]; then
+            deno test --allow-all
+            echo "✅ All tests passed"
+          else
+            echo "ℹ️  No tests directory yet (early phase)"
+            echo "   Tests will be added as implementation progresses"
+          fi
