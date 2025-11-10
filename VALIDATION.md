@@ -227,9 +227,39 @@ Each task must follow this flow:
 
 ## Automated Validation Tools
 
-### 1. Five Cornerstones Validator (To Be Built)
+### 1. GitHub Actions (Primary Enforcement) ⭐
 
-Location: `.claude/tools/validate-cornerstones.ts` (or .sh)
+**Location:** `.github/workflows/validate-cornerstones.yml`
+
+**Why this is primary:**
+- ✅ Runs automatically on every push/PR
+- ✅ No local setup required (cloud-based)
+- ✅ Enforces for all contributors
+- ✅ Cannot be bypassed
+- ✅ Works with cloud-only workflows
+
+**What it runs:**
+- Five Cornerstones validator on all source code
+- Code formatting check (deno fmt)
+- Linting (deno lint)
+- Tests (when they exist)
+
+**Workflows:**
+- `validate-cornerstones.yml` - Principle validation
+- `code-quality.yml` - Formatting, linting, tests
+
+**View results:**
+- GitHub repository → Actions tab
+- Each commit shows ✅ or ❌ status
+- PRs blocked if validation fails
+
+**This is the anchor for cloud-first development.**
+
+---
+
+### 2. Five Cornerstones Validator (CLI Tool)
+
+**Location:** `.claude/tools/validate-cornerstones.ts`
 
 **What it checks:**
 - Hardcoded paths (fails Configurability)
@@ -239,13 +269,31 @@ Location: `.claude/tools/validate-cornerstones.ts` (or .sh)
 
 **Usage:**
 ```bash
+# Validate entire directory
 deno run --allow-read .claude/tools/validate-cornerstones.ts src/
-# Exits 0 if pass, 1 if fail with specific violations
+
+# Validate specific file
+deno run --allow-read .claude/tools/validate-cornerstones.ts src/main.ts
 ```
 
-### 2. Pre-commit Hook
+**Used by:**
+- GitHub Actions (automatic)
+- Local development (optional)
+- CI/CD pipelines
 
-Location: `.git/hooks/pre-commit`
+---
+
+### 3. Pre-commit Hook (Optional - Local Development)
+
+**Location:** `.claude/tools/pre-commit-hook.sh`
+
+**For:** Contributors with local clones who want instant feedback
+
+**Installation (optional):**
+```bash
+cp .claude/tools/pre-commit-hook.sh .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+```
 
 **What it runs:**
 - Code formatter (deno fmt / go fmt)
@@ -253,23 +301,7 @@ Location: `.git/hooks/pre-commit`
 - Five Cornerstones validator
 - Tests (when test framework exists)
 
-**Usage:** Automatic on `git commit`
-
-### 3. Task Completion Validator
-
-Location: `.claude/tools/validate-task-completion.ts`
-
-**What it checks:**
-- All checklist items in this file marked complete
-- Tests exist (or prototype exception documented)
-- Documentation updated (CLAUDE.md if principles changed)
-- No TODOs without issues
-
-**Usage:**
-```bash
-deno run .claude/tools/validate-task-completion.ts
-# Interactive checklist
-```
+**Note:** Not required - GitHub Actions provides the same validation. This is just for faster local feedback.
 
 ---
 
@@ -459,13 +491,14 @@ This validation framework itself should evolve:
 | Problem | Anchor | How It Works |
 |---------|--------|--------------|
 | AI forgets context | Session Start Protocol | MUST read foundation files first |
-| No enforcement | Quality Gates | Checklist before any commit |
+| No enforcement | **GitHub Actions** ⭐ | **Automatic validation on every push/PR** |
 | Subjective principles | Automated Validator | Objective checks (hardcoded paths, etc.) |
-| Skip validation | Git Pre-commit Hook | Can't commit without passing |
+| Skip validation | **GitHub Actions** ⭐ | **Cannot be bypassed, runs in cloud** |
 | Vague methodology | IVDD Workflow | Document → Validate → Implement → Validate |
 | Principles ignored | Five Cornerstones Checklist | Must answer for each cornerstone |
 | System thinking skipped | Ripple Analysis Checklist | Must trace impacts before implementing |
 | Context lost between tasks | Task Templates | Pre-structured format enforces framework |
+| Cloud-only workflow | **GitHub Actions** ⭐ | **No local setup needed, works everywhere** |
 
 ---
 

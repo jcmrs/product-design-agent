@@ -1,0 +1,84 @@
+name: Code Quality
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  format-check:
+    name: Check Code Formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Check TypeScript formatting
+        run: |
+          echo "🎨 Checking TypeScript code formatting..."
+
+          # Check if there are any .ts files
+          if find . -name "*.ts" -not -path "./node_modules/*" | grep -q .; then
+            deno fmt --check $(find . -name "*.ts" -not -path "./node_modules/*")
+            echo "✅ All TypeScript files are properly formatted"
+          else
+            echo "ℹ️  No TypeScript files to check yet"
+          fi
+
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Lint TypeScript
+        run: |
+          echo "🔍 Linting TypeScript code..."
+
+          # Lint if there are any .ts files
+          if find . -name "*.ts" -not -path "./node_modules/*" | grep -q .; then
+            deno lint $(find . -name "*.ts" -not -path "./node_modules/*")
+            echo "✅ All TypeScript files pass linting"
+          else
+            echo "ℹ️  No TypeScript files to lint yet"
+          fi
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Run tests
+        run: |
+          echo "🧪 Running tests..."
+
+          # Run tests if test directory exists
+          if [ -d "tests" ] || [ -d "test" ]; then
+            deno test --allow-all
+            echo "✅ All tests passed"
+          else
+            echo "ℹ️  No tests directory yet (early phase)"
+            echo "   Tests will be added as implementation progresses"
+          fi

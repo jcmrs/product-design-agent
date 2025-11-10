@@ -1,0 +1,51 @@
+name: Five Cornerstones Validation
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate Five Cornerstones
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Run Five Cornerstones Validator
+        run: |
+          echo "🔍 Running Five Cornerstones validation..."
+          echo ""
+
+          # Run validator on source files (exclude prototypes for now)
+          if [ -d "src" ]; then
+            deno run --allow-read .claude/tools/validate-cornerstones.ts src/
+          else
+            echo "ℹ️  No src/ directory yet (early phase)"
+            echo "   Validating prototypes instead..."
+            if [ -d "prototypes/deno-poc/src" ]; then
+              deno run --allow-read .claude/tools/validate-cornerstones.ts prototypes/deno-poc/src/
+            fi
+          fi
+
+      - name: Validation Summary
+        if: always()
+        run: |
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ Five Cornerstones validation complete"
+          echo ""
+          echo "This ensures all code adheres to Sophie's principles:"
+          echo "  1. Configurability"
+          echo "  2. Modularity"
+          echo "  3. Extensibility"
+          echo "  4. Integration"
+          echo "  5. Automation"
