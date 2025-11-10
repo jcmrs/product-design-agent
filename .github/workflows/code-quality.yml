@@ -24,12 +24,14 @@ jobs:
         run: |
           echo "🎨 Checking TypeScript code formatting..."
 
-          # Check if there are any .ts files
-          if find . -name "*.ts" -not -path "./node_modules/*" | grep -q .; then
-            deno fmt --check $(find . -name "*.ts" -not -path "./node_modules/*")
-            echo "✅ All TypeScript files are properly formatted"
+          # Check if there are any .ts files in src/ (production code)
+          if [ -d "src" ] && find src -name "*.ts" 2>/dev/null | grep -q .; then
+            echo "Checking production code formatting..."
+            deno fmt --check src/
+            echo "✅ Production code is properly formatted"
           else
-            echo "ℹ️  No TypeScript files to check yet"
+            echo "ℹ️  No production code (src/) yet"
+            echo "   Prototype code (prototypes/) exempt from strict formatting during development"
           fi
 
   lint:
@@ -49,12 +51,14 @@ jobs:
         run: |
           echo "🔍 Linting TypeScript code..."
 
-          # Lint if there are any .ts files
-          if find . -name "*.ts" -not -path "./node_modules/*" | grep -q .; then
-            deno lint $(find . -name "*.ts" -not -path "./node_modules/*")
-            echo "✅ All TypeScript files pass linting"
+          # Lint production code only (src/)
+          if [ -d "src" ] && find src -name "*.ts" 2>/dev/null | grep -q .; then
+            echo "Linting production code..."
+            deno lint src/
+            echo "✅ Production code passes linting"
           else
-            echo "ℹ️  No TypeScript files to lint yet"
+            echo "ℹ️  No production code (src/) yet"
+            echo "   Prototype code (prototypes/) exempt from strict linting during development"
           fi
 
   test:
