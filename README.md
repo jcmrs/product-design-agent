@@ -48,17 +48,42 @@ Sophie represents a transformation from context-dependent web agents to an indep
 
 ## Current Status
 
-**🏗️ In Development**
+**🎯 Current Focus: Phase 0 - Technology Validation**
 
-Sophie is currently in the architectural design phase. We're building the foundation for:
+Sophie is in active development using an **AI-first methodology** (built BY AI, guided by user).
 
-1. **Core Architecture** — Orchestration engine, memory layer, provider abstraction
-2. **Memory System** — 4-tier architecture (Agent/Project/External/Registry)
-3. **Multi-Project Support** — Seamless context switching
-4. **CLI Interface** — Pure conversational UX
-5. **Knowledge Base** — 80+ tasks, 12 agents, 15K+ lines of methodology
+**Phase 0: Technology Validation (2-6 days)**
+- **Goal:** Choose technology stack (Deno vs Go)
+- **Deliverables:** Working prototypes, comparison document, decision
+- **Status:** Deno prototype in progress, Go prototype pending
 
-**📚 Documentation Available:**
+**Completed:**
+- ✅ Repository transformation (original agent archived at `/archive/`)
+- ✅ Architectural design (138KB across 5 comprehensive documents)
+- ✅ Five Cornerstones framework established
+- ✅ Validation framework with automated enforcement (GitHub Actions)
+- ✅ AI-first development methodology documented
+- ✅ Branch strategy and project structure defined
+
+**Next Phases:**
+- **Phase 1:** Foundation (CLI, config, basic conversation)
+- **Phase 2:** Orchestration (task matching, knowledge loading)
+- **Phase 3-6:** AI integration → Memory layer → Enhancements → Polish
+
+---
+
+## Repository Structure
+
+**Branches:**
+- **`develop`** — Active development (DEFAULT - work here)
+- **`main`** — Stable releases (first release after Phase 1)
+
+**Key Documents:**
+- [`CLAUDE.md`](CLAUDE.md) — Foundation: principles, methodology, Five Cornerstones
+- [`VALIDATION.md`](VALIDATION.md) — Enforcement: quality gates, automated checks
+- [`.github/AI_FIRST_STRUCTURE.md`](.github/AI_FIRST_STRUCTURE.md) — AI-first dev methodology
+
+**📚 Architecture Documentation:**
 - [System Analysis](docs/SYSTEM_ANALYSIS.md) — Complete mapping of current implementation
 - [Behavioral Patterns](docs/BEHAVIORAL_PATTERNS.md) — How the "soul" works
 - [Architecture Design](docs/ARCHITECTURE_DESIGN.md) — Blueprint for transformation
