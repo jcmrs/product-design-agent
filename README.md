@@ -48,14 +48,24 @@ Sophie represents a transformation from context-dependent web agents to an indep
 
 ## Current Status
 
-**🎯 Current Focus: Phase 0 - Technology Validation**
+### 📍 Quick Links
+
+**For immediate action:**
+- **[STATUS.md](STATUS.md)** — Current phase, what to do next, progress dashboard
+- **[PHASE_0_TASKS.md](PHASE_0_TASKS.md)** — Detailed task list with acceptance criteria
+- **[ROADMAP.md](ROADMAP.md)** — Strategic plan from Phase 0 → v1.0.0
+
+---
+
+**🎯 Current Focus: Phase 1 - Foundation** (Ready to Begin)
 
 Sophie is in active development using an **AI-first methodology** (built BY AI, guided by user).
 
-**Phase 0: Technology Validation (2-6 days)**
-- **Goal:** Choose technology stack (Deno vs Go)
-- **Deliverables:** Working prototypes, comparison document, decision
-- **Status:** Deno prototype in progress, Go prototype pending
+**Phase 0: Technology Validation** ✅ **COMPLETE** (2025-11-10)
+- **Result:** **Go** chosen as technology stack (82/100 vs Deno 78/100)
+- **Decision:** [ADR-001-TECHNOLOGY-CHOICE.md](docs/ADR-001-TECHNOLOGY-CHOICE.md)
+- **Rationale:** Production excellence, ecosystem maturity, smaller binaries
+- **Duration:** 1 AI session (faster than 2-6 day estimate)
 
 **Completed:**
 - ✅ Repository transformation (original agent archived at `/archive/`)
@@ -64,11 +74,13 @@ Sophie is in active development using an **AI-first methodology** (built BY AI, 
 - ✅ Validation framework with automated enforcement (GitHub Actions)
 - ✅ AI-first development methodology documented
 - ✅ Branch strategy and project structure defined
+- ✅ Development roadmap and tracking system established
+- ✅ **Phase 0: Technology validation complete (Go chosen)**
 
-**Next Phases:**
-- **Phase 1:** Foundation (CLI, config, basic conversation)
-- **Phase 2:** Orchestration (task matching, knowledge loading)
-- **Phase 3-6:** AI integration → Memory layer → Enhancements → Polish
+**Next: Phase 1 (Weeks 1-2)**
+- **Focus:** Foundation (CLI REPL, YAML config, SQLite, provider abstraction)
+- **Status:** Awaiting user validation of Go choice before starting
+- **Timeline:** 2 weeks estimated
 
 ---
 
@@ -79,9 +91,16 @@ Sophie is in active development using an **AI-first methodology** (built BY AI, 
 - **`main`** — Stable releases (first release after Phase 1)
 
 **Key Documents:**
-- [`CLAUDE.md`](CLAUDE.md) — Foundation: principles, methodology, Five Cornerstones
-- [`VALIDATION.md`](VALIDATION.md) — Enforcement: quality gates, automated checks
-- [`.github/AI_FIRST_STRUCTURE.md`](.github/AI_FIRST_STRUCTURE.md) — AI-first dev methodology
+
+*Status & Tasks (start here):*
+- [`STATUS.md`](STATUS.md) — Current phase, next task, progress dashboard ⚡
+- [`PHASE_0_TASKS.md`](PHASE_0_TASKS.md) — Detailed Phase 0 task list
+- [`ROADMAP.md`](ROADMAP.md) — Strategic development plan (Phase 0 → v1.0.0)
+
+*Development Foundation:*
+- [`CLAUDE.md`](CLAUDE.md) — Principles, methodology, Five Cornerstones
+- [`VALIDATION.md`](VALIDATION.md) — Quality gates, automated checks
+- [`.github/AI_FIRST_STRUCTURE.md`](.github/AI_FIRST_STRUCTURE.md) — AI-first development protocol
 
 **📚 Architecture Documentation:**
 - [System Analysis](docs/SYSTEM_ANALYSIS.md) — Complete mapping of current implementation
