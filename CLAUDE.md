@@ -8,7 +8,7 @@
 
 **Name:** Sophie
 **Purpose:** AI-powered product design mentor with persistent memory and multi-project support
-**Status:** In Development (Phase 0: Technology Validation)
+**Status:** Phase 0 Complete → Phase 1 Ready (Foundation implementation can begin)
 
 **What Sophie Is:**
 - Independent CLI application for product design mentorship
@@ -23,6 +23,28 @@
 - Not dependent on Claude Desktop or Gemini Gems platforms
 - Not a web application (CLI first, web UI future enhancement)
 - Not a code-only tool (human-AI collaboration is core)
+
+---
+
+## 🚀 For Local AI: Start Here
+
+**If you're a local Claude Code CLI picking up this project:**
+
+This project includes a comprehensive **AI Bootstrap Package** in `docs/bootstrap/` designed specifically for knowledge transfer.
+
+**Your entry point:** `docs/bootstrap/START_HERE.md`
+
+The bootstrap package contains:
+- **START_HERE.md** - Entry point with reading order and critical warnings
+- **SOPHIE_ESSENCE.md** - Vision, soul, and purpose (the "why")
+- **IMPLEMENTATION_ROADMAP.md** - Detailed phase-by-phase implementation guide
+- **WINDOWS_SETUP.md** - Environment setup for Windows (no-WSL)
+- **VALIDATION_CHECKLIST.md** - 45 questions to verify comprehension
+- **AI_BOOTSTRAP_GUIDE.md** - Quick-start practical guide
+
+**Critical:** Read documents in the order specified in START_HERE.md, complete the validation checklist, and have a conversation with the user before writing any code.
+
+This document (CLAUDE.md) is part of your reading list - continue below after reading the bootstrap package.
 
 ---
 
@@ -506,6 +528,7 @@ product-design-agent/ (to be renamed to sophie)
 
 ---
 
-**Last Updated:** 2025-11-10
-**Current Phase:** Phase 0 (Technology Validation)
-**Next Milestone:** Deno vs Go decision
+**Last Updated:** 2025-11-14
+**Current Phase:** Phase 0 Complete → Phase 1 Ready
+**Next Milestone:** Local AI onboarding and Phase 1 implementation (Foundation)
+**Bootstrap Package:** docs/bootstrap/ (AI handoff documentation complete)
