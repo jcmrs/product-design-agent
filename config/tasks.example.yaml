@@ -1,0 +1,156 @@
+# Sophie Task Configuration - Example
+#
+# This example shows 3 tasks from the original 80+ to demonstrate schema and structure.
+# Full migration will include all tasks.
+#
+# Original source: archive/original-claude-desktop-agent/config/tasks.yaml
+
+tasks:
+  - id: "product-vision-development"
+    name: "Product Vision Development"
+    name_es: "Desarrollo de Visión del Producto"
+
+    category: "strategy"
+
+    description: >
+      Define a compelling product vision that articulates why the product matters,
+      who it serves, and what unique value it provides. Aligns stakeholders around
+      a shared future state.
+
+    description_es: >
+      Definir una visión de producto convincente que articule por qué el producto
+      importa, a quién sirve y qué valor único proporciona.
+
+    keywords:
+      - "vision"
+      - "product strategy"
+      - "why we're building"
+      - "product purpose"
+      - "north star"
+      - "mission"
+      - "value proposition"
+
+    required_agent: "strategic-thinker"
+
+    knowledge_guide: "product-vision-development.md"
+
+    confidence_threshold: 0.7
+
+    related_tasks:
+      - "competitive-analysis"
+      - "user-research-planning"
+      - "okr-definition"
+
+    expected_output: >
+      A clear product vision statement containing:
+      - Problem we're solving (user pain points)
+      - Who we serve (target users)
+      - What we provide (unique value)
+      - How we're different (differentiation)
+      - Why it matters (impact and purpose)
+      Formatted as 1-2 paragraph vision statement + supporting rationale
+
+  - id: "user-research-planning"
+    name: "User Research Planning"
+    name_es: "Planificación de Investigación de Usuarios"
+
+    category: "research"
+
+    description: >
+      Design a systematic research study to understand user needs, behaviors,
+      and pain points. Define research questions, methodology, participant criteria,
+      and success metrics.
+
+    keywords:
+      - "user research"
+      - "research plan"
+      - "user interviews"
+      - "usability testing"
+      - "research methodology"
+      - "user needs"
+      - "research questions"
+
+    required_agent: "user-research-specialist"
+
+    knowledge_guide: "user-research-planning.md"
+
+    confidence_threshold: 0.65
+
+    related_tasks:
+      - "interview-guide-development"
+      - "research-synthesis"
+      - "persona-creation"
+
+    expected_output: >
+      A research plan containing:
+      - Research objectives and questions
+      - Methodology selection (interviews, testing, surveys, etc.)
+      - Participant recruitment criteria and plan
+      - Timeline and resource requirements
+      - Success metrics and deliverables
+      Formatted as structured markdown document
+
+  - id: "stakeholder-mapping"
+    name: "Stakeholder Mapping"
+    name_es: "Mapeo de Stakeholders"
+
+    category: "collaboration"
+
+    description: >
+      Identify and map all stakeholders involved in or affected by a product
+      initiative. Analyze their interests, influence, and communication needs
+      to plan effective engagement.
+
+    keywords:
+      - "stakeholders"
+      - "stakeholder analysis"
+      - "influence mapping"
+      - "stakeholder engagement"
+      - "power interest matrix"
+      - "communication planning"
+
+    required_agent: "systems-thinker"
+
+    knowledge_guide: "stakeholder-mapping.md"
+
+    confidence_threshold: 0.6
+
+    related_tasks:
+      - "service-blueprint"
+      - "ecosystem-mapping"
+      - "meeting-facilitation"
+
+    expected_output: >
+      A stakeholder map containing:
+      - List of all stakeholders (names, roles, departments)
+      - Power/Interest matrix (influence vs. engagement level)
+      - Communication plan (frequency, format, content)
+      - Engagement strategy for key stakeholders
+      - Risks and mitigation strategies
+      Formatted as visual map + supporting documentation
+
+# SCHEMA REFERENCE
+#
+# Task Structure:
+# - id: string (kebab-case, unique identifier)
+# - name: string (display name, English)
+# - name_es: string (display name, Spanish - optional)
+# - category: string (strategy|research|design|collaboration|etc)
+# - description: string (what this task accomplishes, English)
+# - description_es: string (Spanish translation - optional)
+# - keywords: array<string> (terms for intent matching)
+# - required_agent: string (agent ID who handles this task)
+# - knowledge_guide: string (filename in knowledge/task_guides/)
+# - confidence_threshold: number (0-1, minimum confidence to auto-proceed)
+# - related_tasks: array<string> (task IDs for cross-references)
+# - expected_output: string (deliverable description)
+#
+# Notes:
+# - Keywords used for intent matching (case-insensitive)
+# - confidence_threshold determines auto-proceed vs. confirm with user
+#   - >0.8: High confidence, proceed automatically
+#   - 0.5-0.8: Medium confidence, suggest task and confirm
+#   - <0.5: Low confidence, ask user to clarify
+# - knowledge_guide must exist in knowledge/task_guides/
+# - related_tasks create cross-reference network
+# - expected_output helps AI provider format response appropriately
